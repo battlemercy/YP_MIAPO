@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48d6f9248faf467cbb350536a9e3fc67" Name="Diagram1">
+        <EntityTypeShape EntityType="gr691_msiModel.Administrator" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_msiModel.Client" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_msiModel.Operation" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_msiModel.Paymaster" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_msiModel.Role" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="gr691_msiModel.FK__Administr__Role___29AC2CE0" />
+        <AssociationConnector Association="gr691_msiModel.FK__Client__Role_ID__28B808A7" />
+        <AssociationConnector Association="gr691_msiModel.FK__Operation__Clien__2B947552" />
+        <AssociationConnector Association="gr691_msiModel.FK__Operation__Payma__2C88998B" />
+        <AssociationConnector Association="gr691_msiModel.FK__Paymaster__Role___2AA05119" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

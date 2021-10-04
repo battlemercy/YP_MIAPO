@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gr691_msiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Role_ID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="gr691_msiModel.FK__Administr__Role___29AC2CE0" FromRole="Administrator" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bank_Account" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Role_ID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="gr691_msiModel.FK__Client__Role_ID__28B808A7" FromRole="Client" ToRole="Role" />
+    <NavigationProperty Name="Operation" Relationship="gr691_msiModel.FK__Operation__Clien__2B947552" FromRole="Client" ToRole="Operation" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOperation" Type="String" />
+    <Property Name="Client_ID" Type="Int32" />
+    <Property Name="Paymaster_ID" Type="Int32" />
+    <Property Name="Processing_Stage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Client" Relationship="gr691_msiModel.FK__Operation__Clien__2B947552" FromRole="Operation" ToRole="Client" />
+    <NavigationProperty Name="Paymaster" Relationship="gr691_msiModel.FK__Operation__Payma__2C88998B" FromRole="Operation" ToRole="Paymaster" />
+  </EntityType>
+  <EntityType Name="Paymaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Role_ID" Type="Int32" />
+    <NavigationProperty Name="Operation" Relationship="gr691_msiModel.FK__Operation__Payma__2C88998B" FromRole="Paymaster" ToRole="Operation" />
+    <NavigationProperty Name="Role" Relationship="gr691_msiModel.FK__Paymaster__Role___2AA05119" FromRole="Paymaster" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Administrator" Relationship="gr691_msiModel.FK__Administr__Role___29AC2CE0" FromRole="Role" ToRole="Administrator" />
+    <NavigationProperty Name="Client" Relationship="gr691_msiModel.FK__Client__Role_ID__28B808A7" FromRole="Role" ToRole="Client" />
+    <NavigationProperty Name="Paymaster" Relationship="gr691_msiModel.FK__Paymaster__Role___2AA05119" FromRole="Role" ToRole="Paymaster" />
+  </EntityType>
+  <EntityContainer Name="gr691_msiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Operation" EntityType="Self.Operation" />
+    <EntitySet Name="Paymaster" EntityType="Self.Paymaster" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <AssociationSet Name="FK__Administr__Role___29AC2CE0" Association="gr691_msiModel.FK__Administr__Role___29AC2CE0">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client__Role_ID__28B808A7" Association="gr691_msiModel.FK__Client__Role_ID__28B808A7">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Operation__Clien__2B947552" Association="gr691_msiModel.FK__Operation__Clien__2B947552">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Operation" EntitySet="Operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Operation__Payma__2C88998B" Association="gr691_msiModel.FK__Operation__Payma__2C88998B">
+      <End Role="Paymaster" EntitySet="Paymaster" />
+      <End Role="Operation" EntitySet="Operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paymaster__Role___2AA05119" Association="gr691_msiModel.FK__Paymaster__Role___2AA05119">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Paymaster" EntitySet="Paymaster" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__Administr__Role___29AC2CE0">
+    <End Type="gr691_msiModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="gr691_msiModel.Administrator" Role="Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client__Role_ID__28B808A7">
+    <End Type="gr691_msiModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="gr691_msiModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Operation__Clien__2B947552">
+    <End Type="gr691_msiModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="gr691_msiModel.Operation" Role="Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Operation__Payma__2C88998B">
+    <End Type="gr691_msiModel.Paymaster" Role="Paymaster" Multiplicity="0..1" />
+    <End Type="gr691_msiModel.Operation" Role="Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paymaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="Paymaster_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paymaster__Role___2AA05119">
+    <End Type="gr691_msiModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="gr691_msiModel.Paymaster" Role="Paymaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Paymaster">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
